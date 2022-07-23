@@ -1,0 +1,110 @@
+#Qlik Sense Proxy Service (QPS)
+netsh advfirewall firewall add rule name="ALLOW TCP PORT 80" dir=in action=allow protocol=TCP localport=80
+
+#Qlik Sense Proxy Service(HTTP) 
+netsh advfirewall firewall add rule name="Qlik Sense Proxy Service(HTTP)" dir=in action=allow protocol=TCP localport=80 
+netsh advfirewall firewall add rule name="Qlik Sense Proxy Service(HTTPS)" dir=in action=allow protocol=TCP localport=443 
+netsh advfirewall firewall add rule name="Qlik Sense Proxy Service(REST API)" dir=in action=allow protocol=TCP localport=4243 
+netsh advfirewall firewall add rule name="Qlik Sense Proxy Service(QRS websocket)" dir=out action=allow protocol=TCP localport=4239 
+netsh advfirewall firewall add rule name="Qlik Sense Proxy Service(QRS REST API)" dir=out action=allow protocol=TCP localport=4242 
+netsh advfirewall firewall add rule name="Qlik Sense Proxy Service(Engine)" dir=out action=allow protocol=TCP localport=4747 
+netsh advfirewall firewall add rule name="Qlik Sense Proxy Service(Printing)" dir=out action=allow protocol=TCP localport=4899 
+netsh advfirewall firewall add rule name="Qlik Sense Proxy Service(Broker)" dir=out action=allow protocol=TCP localport=4900 
+netsh advfirewall firewall add rule name="Qlik Sense Proxy Service(Data profiling)" dir=out action=allow protocol=TCP localport=4949 
+netsh advfirewall firewall add rule name="Qlik Sense Proxy Service(Logging service)" dir=out action=allow protocol=TCP localport=7070 
+netsh advfirewall firewall add rule name="Qlik Sense Proxy Service(Windows authentication)" dir=in action=allow protocol=TCP localport=4244 
+
+#Qlik Sense Engine Service (QES)
+netsh advfirewall firewall add rule name="Qlik Sense Engine Service(QES listen port)" dir=in action=allow protocol=TCP localport=4747 
+netsh advfirewall firewall add rule name="Qlik Sense Engine Service(Logging service)" dir=out action=allow protocol=TCP localport=7070 
+netsh advfirewall firewall add rule name="Qlik Sense Engine Service(notifications from QRS)" dir=in action=allow protocol=TCP localport=4748 
+
+#Qlik Sense Repository Service (QRS)
+netsh advfirewall firewall add rule name="Qlik Sense Repository Service (QRS) (REST API)" dir=in action=allow protocol=TCP localport=4242 (REST API)
+netsh advfirewall firewall add rule name="Qlik Sense Repository Service (QRS) (from QPS - websocket)" dir=in action=allow protocol=TCP localport=4239 
+netsh advfirewall firewall add rule name="Qlik Sense Repository Service (QRS) (When QRS is run in test mode)" dir=in action=allow protocol=TCP localport=4240 
+netsh advfirewall firewall add rule name="Qlik Sense Repository Service (QRS) (Setup API - inbound on rim nodes)" dir=in action=allow protocol=TCP localport=4444 
+netsh advfirewall firewall add rule name="Qlik Sense Repository Service (QRS) (REST API)" dir=out action=allow protocol=TCP localport=4242 
+netsh advfirewall firewall add rule name="Qlik Sense Repository Service (QRS) (Proxy REST API)" dir=out action=allow protocol=TCP localport=4243 
+netsh advfirewall firewall add rule name="Qlik Sense Repository Service (QRS) (When QRS is run in test mode)" dir=out action=allow protocol=TCP localport=4240 
+netsh advfirewall firewall add rule name="Qlik Sense Repository Service (QRS) (Setup API – outbound on central node)" dir=out action=allow protocol=TCP localport=4444 
+netsh advfirewall firewall add rule name="Qlik Sense Repository Service (QRS) (Engine)" dir=out action=allow protocol=TCP localport=4747 
+netsh advfirewall firewall add rule name="Qlik Sense Repository Service (QRS) (Engine notification API)" dir=out action=allow protocol=TCP localport=4748 
+netsh advfirewall firewall add rule name="Qlik Sense Repository Service (QRS) (Scheduler manager API)" dir=out action=allow protocol=TCP localport=5050 
+netsh advfirewall firewall add rule name="Qlik Sense Repository Service (QRS) (Logging service)" dir=out action=allow protocol=TCP localport=7070 
+netsh advfirewall firewall add rule name="Qlik Sense Repository Service (QRS) (License Service)" dir=out action=allow protocol=TCP localport=9200 
+netsh advfirewall firewall add rule name="Qlik Sense Repository Service (QRS) (Migration service)" dir=out action=allow protocol=TCP localport=4545 
+netsh advfirewall firewall add rule name="Qlik Sense Repository Service (QRS) (Certificate unlock)" dir=out action=allow protocol=TCP localport=4570 
+
+#Qlik Sense Scheduler Service (QSS)
+netsh advfirewall firewall add rule name="Qlik Sense Scheduler Service (QSS) - (Manager REST API)" dir=in action=allow protocol=TCP localport=5050 
+netsh advfirewall firewall add rule name="Qlik Sense Scheduler Service (QSS) - (Worker REST API)" dir=in action=allow protocol=TCP localport=5151 
+netsh advfirewall firewall add rule name="Qlik Sense Scheduler Service (QSS) - (Monitoring API - optional)" dir=in action=allow protocol=TCP localport=5252 
+netsh advfirewall firewall add rule name="Qlik Sense Scheduler Service (QSS) - (QRS REST API)" dir=out action=allow protocol=TCP localport=4242 
+netsh advfirewall firewall add rule name="Qlik Sense Scheduler Service (QSS) - (Logging Service)" dir=out action=allow protocol=TCP localport=7070 
+netsh advfirewall firewall add rule name="Qlik Sense Scheduler Service (QSS) - (Worker to Manager)" dir=out action=allow protocol=TCP localport=5050 
+netsh advfirewall firewall add rule name="Qlik Sense Scheduler Service (QSS) - (Manager to Worker)" dir=out action=allow protocol=TCP localport=5151 
+
+#Qlik Sense Repository Database (QRD)
+netsh advfirewall firewall add rule name="ALLOW TCP PORT 80" dir=in action=allow protocol=TCP localport=4432 (default listen port for database connections)
+
+#Qlik Sense Printing service (QPR)
+netsh advfirewall firewall add rule name="Qlik Sense Printing service (QPR) (QPR listen port)" dir=in action=allow protocol=TCP localport=4899
+netsh advfirewall firewall add rule name="Qlik Sense Printing service (QPR) (Sense web server - proxy)" dir=in action=allow protocol=TCP localport=443 
+netsh advfirewall firewall add rule name="Qlik Sense Printing service (QPR) (QRS REST API)" dir=in action=allow protocol=TCP localport=4242
+netsh advfirewall firewall add rule name="Qlik Sense Printing service (QPR) (CEF debugging)" dir=in action=allow protocol=TCP localport=8088
+
+#Qlik License Service
+netsh advfirewall firewall add rule name="Qlik License Service(HTTPS)" dir=out action=allow protocol=TCP localport=443 
+netsh advfirewall firewall add rule name="Qlik License Service" dir=in action=allow protocol=TCP localport=9200
+
+#Broker service
+netsh advfirewall firewall add rule name="Broker service" dir=in action=allow protocol=TCP localport=4900
+netsh advfirewall firewall add rule name="Broker service(Converter service)" dir=out action=allow protocol=TCP localport=3003 
+netsh advfirewall firewall add rule name="Broker service(Chart sharing)" dir=out action=allow protocol=TCP localport=4555 
+netsh advfirewall firewall add rule name="Broker service(Data profiling)" dir=out action=allow protocol=TCP localport=4949 
+netsh advfirewall firewall add rule name="Broker service(Precedents service)" dir=out action=allow protocol=TCP localport=4950 
+netsh advfirewall firewall add rule name="Broker service(Hub service)" dir=out action=allow protocol=TCP localport=9028 
+netsh advfirewall firewall add rule name="Broker service(Capability service)" dir=out action=allow protocol=TCP localport=9031 
+netsh advfirewall firewall add rule name="Broker service(About Service)" dir=out action=allow protocol=TCP localport=9032 
+netsh advfirewall firewall add rule name="Broker service(Connector registry proxy - server)" dir=out action=allow protocol=TCP localport=9041 
+netsh advfirewall firewall add rule name="Broker service(Connector registry proxy - desktop)" dir=out action=allow protocol=TCP localport=9051 
+netsh advfirewall firewall add rule name="Broker service(Precedents service)" dir=out action=allow protocol=TCP localport=9054 
+netsh advfirewall firewall add rule name="Broker service(Depgraph service)" dir=out action=allow protocol=TCP localport=9079 
+netsh advfirewall firewall add rule name="Broker service(Web extension service)" dir=out action=allow protocol=TCP localport=9080 
+netsh advfirewall firewall add rule name="Broker service(Qlik Notifier Service)" dir=out action=allow protocol=TCP localport=9081 
+netsh advfirewall firewall add rule name="Broker service(Qlik Mobility Registrar)" dir=out action=allow protocol=TCP localport=9082 
+netsh advfirewall firewall add rule name="Broker service(DownloadPrep)" dir=out action=allow protocol=TCP localport=9090 
+netsh advfirewall firewall add rule name="Broker service(On-demand app service)" dir=out action=allow protocol=TCP localport=9098 
+netsh advfirewall firewall add rule name="Broker service (Resource Distribution Service)" dir=out action=allow protocol=TCP localport=21060
+netsh advfirewall firewall add rule name="Broker service (Deployment based warnings service)" dir=out action=allow protocol=TCP localport=46277
+netsh advfirewall firewall add rule name="Broker service (Cayley.io—Open source graph database layer used by Precedents service)" dir=out action=allow protocol=TCP localport=64210
+
+#Data profiling service	
+netsh advfirewall firewall add rule name="Data profiling service(listen port for REST API and websocket)" dir=in action=allow protocol=TCP localport=4949 
+netsh advfirewall firewall add rule name="Data profiling service(QRS REST API)" dir=in action=allow protocol=TCP localport=4242 
+netsh advfirewall firewall add rule name="Data profiling service(QES)" dir=in action=allow protocol=TCP localport=4747 
+
+#App Distribution Service
+netsh advfirewall firewall add rule name="App Distribution Service" dir=out action=allow protocol=TCP localport=5926
+
+#Hybrid Deployment Service	
+netsh advfirewall firewall add rule name="Hybrid Deployment Service" dir=out action=allow protocol=TCP localport=5927
+
+#Hybrid Setup Console - HSC	
+netsh advfirewall firewall add rule name="Hybrid Setup Console - HSC" dir=in action=allow protocol=TCP localport=5929
+
+#Logging Service	
+netsh advfirewall firewall add rule name="Logging Service dir=in action=allow protocol=TCP localport=7080
+netsh advfirewall firewall add rule name="Logging Service dir=in action=allow protocol=TCP localport=7081
+
+#Qlik Catalog Service	
+netsh advfirewall firewall add rule name="Qlik Catalog Service" dir=in action=allow protocol=TCP localport=4850
+
+#NL Parser Service	
+netsh advfirewall firewall add rule name="NL Parser Service" dir=in action=allow protocol=TCP localport=4952
+
+#NL Broker Service
+netsh advfirewall firewall add rule name="NL Broker Service" dir=in action=allow protocol=TCP localport=4951
+netsh advfirewall firewall add rule name="NL Broker Service - NLApp Search Service" dir=in action=allow protocol=TCP localport=4953 
+netsh advfirewall firewall add rule name="NL Broker Service - BotChannel Service" dir=in action=allow protocol=TCP localport=4954  		 
